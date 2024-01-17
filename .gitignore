@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
-firebaseConfig.js
+#firebaseConfig.js
+.env.local

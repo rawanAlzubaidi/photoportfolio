@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+body {
+  background-color:  #FAF9F6;
+}
 
 .App-logo {
   height: 40vmin;
@@ -13,26 +16,69 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Adjust the spacing between Polaroids */
+  justify-content: center; /* This centers the flex items (Polaroids) in the container */
+  padding: 20px;
+}
+
+.polaroid {
+  width: 200px;
+  background: white;
+  box-shadow: 0 0 10px rgba(193, 193, 193, 0.5);
+  padding: 10px 10px 35px 10px;
+  text-align: center;
+  margin: 20px;
+}
+.polaroid:hover {
+  transform: scale(1.1); /* Scales the image to 110% of its original size on hover */
+  transition: transform 0.2s ease-in-out; /* Smooth transition for the scaling effect */
+}
+
+
+.polaroid img {
+  width: 100%; /* Makes image fill the frame */
+   display: block; /* Removes bottom space under image*/
+}
+
+
+.navbar-brand {
+  padding-top: .5rem; /* Adjust the padding to control the space above the logo */
+}
+
+.navbar-collapse {
+  justify-content: center;
+}
+
+@media (min-width: 992px) { /* Adjusts for large screens */
+  .navbar {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .navbar-collapse {
+    flex-basis: auto;
   }
 }
+
+/* Custom Navbar Styles */
+.custom-navbar {
+  background-color:  white; /* Replace with your desired color */
+}
+
+/* Optional: Change the navbar text color if needed */
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+  color: black; /* Replace with your desired text color */
+}
+
+/* Optional: Change the navbar text color on hover if needed */
+.custom-navbar .nav-link:hover {
+  color: black; /* Replace with your desired hover text color */
+}
+

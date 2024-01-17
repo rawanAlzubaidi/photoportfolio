@@ -1,21 +1,10 @@
-/* PolaroidFrame.css */
+/* 
 .polaroid {
-    width: 250px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: 10px 10px 20px 10px;
+    width: 200px;
+    background: #FFFFFF;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    padding: 15px 15px 35px 15px;
     text-align: center;
     margin: 20px;
-  }
-  
-  .polaroid img {
-    width: 100%; /* Makes image fill the frame */
-    display: block; /* Removes bottom space under image */
-  }
-  
-  .caption {
-    color: black;
-    font-size: 0.9em;
-    margin-top: 5px;
-  }
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
   

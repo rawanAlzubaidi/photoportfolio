@@ -15,7 +15,8 @@ const MyNavbar = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mx-auto">
           <Nav.Link as={Link} to="/doors">Doors</Nav.Link>
-          <Nav.Link as={Link} to="/pictures">Pictures</Nav.Link>
+          <Nav.Link as={Link} to="/Digital">Digital</Nav.Link>
+          <Nav.Link as={Link} to="/Film">Film</Nav.Link>
           {/* Other links can go here */}
         </Nav>
       </Navbar.Collapse>

@@ -1,14 +1,22 @@
 // App.js
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ImageGallery from './ImageGallery'; // Adjust the path based on where your ImageGallery component is located
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MyNavbar from './Navbar';
+import ImageGallery from './ImageGallery'; // Your ImageGallery component
+import Doors from './Doors'; // Your Doors component
 
-const App = () => (
-  <div classname="app">
+const App = () => {
+  return (
+    <Router>
       <MyNavbar />
-      <ImageGallery />
-  </div>
-);
+      <Routes>
+        <Route path="/" element={<ImageGallery />} /> {/* Root path shows ImageGallery */}
+        <Route path="/doors" element={<Doors />} />
+        <Route path="/pictures" element={<ImageGallery />} /> {/* Root path shows ImageGallery */}
+        {/* Add more routes as needed */}
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;

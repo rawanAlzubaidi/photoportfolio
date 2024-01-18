@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import './App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const ImageGallery = () => {
+const Doors = () => {
     const [imageUrls, setImageUrls] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [showModal, setShowModal] = useState(false);
@@ -14,16 +14,17 @@ const ImageGallery = () => {
     useEffect(() => {
         const fetchImages = async () => {
             try {
-                const imagesRef = ref(storage, '/');
+                const imagesRef = ref(storage, 'doors/');
                 const result = await listAll(imagesRef);
+                console.log('Items in doors/:', result.items); // Debugging line
                 const urlPromises = result.items.map(imageRef => getDownloadURL(imageRef));
                 const urls = await Promise.all(urlPromises);
                 setImageUrls(urls);
             } catch (error) {
-                console.error("Error fetching images: ", error);
+                console.error("Error fetching images from doors folder: ", error);
             }
         };
-
+    
         fetchImages();
     }, []);
 
@@ -58,7 +59,8 @@ const ImageGallery = () => {
             <div className="container mt-4">
                 <div className="row">
                     {imageUrls.map((url, index) => (
-                        <div key={index} className="col-sm-2 col-md-4 col-lg-2 mb-4">
+                        // Update the class here to use col-4 for mobile and keep col-lg-2 for large screens
+                        <div key={index} className="col-4 col-sm-4 col-md-4 col-lg-2 mb-4">
                             <div className="polaroid" onClick={() => handleImageClick(index)}>
                                 <img src={url} alt={`Image ${index}`} className="img-fluid" />
                                 {/* <div className="caption">Image {index + 1}</div> */}
@@ -86,5 +88,5 @@ const ImageGallery = () => {
             );
             };
 
-export default ImageGallery;
+export default Doors;
                    

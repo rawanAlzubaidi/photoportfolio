@@ -23,7 +23,6 @@ body {
   box-shadow: 0 0 10px rgba(193, 193, 193, 0.5);
   padding: 10px 10px 35px 10px;
   text-align: center;
-  margin: 20px;
 }
 .polaroid:hover {
   transform: scale(1.1); /* Scales the image to 110% of its original size on hover */
@@ -57,14 +56,15 @@ body {
 /* Mobile styles */
 @media (max-width: 768px) {
   .polaroid {
-    width: 100px; /* Example size for mobile */
-   margin: 10px; /* Reduced margin for smaller screens */
+    width: 130px; /* Example size for mobile */
+    /* margin: 15px; Reduced margin for smaller screens */
+   padding: 5px 5px 25px 5px;
   
   }
 
   /* If you want to change the gap between polaroids in mobile view */
   .gallery-container {
-    gap: 8px; /* Smaller gap for mobile devices */
+    gap: 0px; /* Smaller gap for mobile devices */
   }
 }
 

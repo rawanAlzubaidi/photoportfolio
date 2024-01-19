@@ -18,6 +18,7 @@ const MyNavbar = () => {
           <Nav.Link as={Link} to="/doors">Doors</Nav.Link>
           <Nav.Link as={Link} to="/Digital">Digital</Nav.Link>
           <Nav.Link as={Link} to="/Film">Film</Nav.Link>
+          <Nav.Link as={Link} to="/aboutme">About</Nav.Link>
           {/* Other links can go here */}
         </Nav>
       </Navbar.Collapse>

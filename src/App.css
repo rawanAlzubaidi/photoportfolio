@@ -8,6 +8,15 @@ body {
 .App-link {
   color: #61dafb;
 }
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
 
 .gallery-container {
   display: flex;
@@ -130,5 +139,61 @@ body {
     max-height: 120px; /* Adjust as needed for your design */
   }
 }
+
+
+
+
+
+/* flipped card style  */
+.flip-card {
+  background-color: transparent;
+  width: 300px; /* Adjust as needed */
+  height: 200px; /* Adjust as needed */
+  perspective: 1000px; /* Gives a nice effect on the flip */
+  margin: auto;
+
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hides the back side during the flip */
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: white;
+  color: black;
+  transform: rotateY(180deg);
+}
+.flip-card-back p{
+  /* font-family: 'Handlee', cursive; */
+  text-align: center;
+  font-family: 'Swanky and Moo Moo', cursive;
+}
+
+.flip-card img {
+  width: 100%;
+  height: auto;
+}
+
 
 

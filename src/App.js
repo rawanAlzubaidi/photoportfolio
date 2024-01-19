@@ -5,17 +5,19 @@ import MyNavbar from './Navbar';
 import ImageGallery from './ImageGallery';
 import Doors from './Doors'; 
 import Film from './Film'; 
-
+import FlipCard from './FlipCard';
 
 const App = () => {
   return (
     <Router>
       <MyNavbar />
+      
       <Routes>
         <Route path="/" element={<ImageGallery />} /> {/* Root path shows ImageGallery */}
         <Route path="/doors" element={<Doors />} />
         <Route path="/Digital" element={<ImageGallery />} /> {/* Root path shows ImageGallery */}
         <Route path="/Film" element={<Film />} /> {/* Root path shows ImageGallery */}
+        <Route path="/aboutme" element={<FlipCard />} /> {/* Root path shows ImageGallery */}
       </Routes>
     </Router>
   );

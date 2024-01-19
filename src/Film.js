@@ -11,6 +11,9 @@ const Film = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [showModal, setShowModal] = useState(false);
 
+    const [verticalImages, setVerticalImages] = useState([]);
+    const [horizontalImages, setHorizontalImages] = useState([]);
+
     useEffect(() => {
         const fetchImages = async () => {
             try {
@@ -25,7 +28,39 @@ const Film = () => {
         };
 
         fetchImages();
+
+        
     }, []);
+
+    useEffect(() => {
+        // This effect runs when imageUrls are set
+        if (imageUrls.length > 0) {
+            const tempVertical = [];
+            const tempHorizontal = [];
+            let loadedImages = 0; // Counter for loaded images
+
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.onload = () => {
+                    loadedImages++;
+                    if (img.naturalHeight > img.naturalWidth * 1.1) {
+                        tempVertical.push(url);
+                    } else {
+                        tempHorizontal.push(url);
+                    }
+                    if (loadedImages === imageUrls.length) {
+                        setVerticalImages(tempVertical);
+                        setHorizontalImages(tempHorizontal);
+                    }
+                };
+                img.onerror = () => {
+                    loadedImages++; // Increment counter even if image fails to load
+                    // You might decide to handle the error differently here
+                };
+                img.src = url;
+            });
+        }
+    }, [imageUrls]); // Depends on imageUrls
 
     const handleImageClick = (index) => {
         setCurrentImageIndex(index);
@@ -55,17 +90,18 @@ const Film = () => {
 
     return (
         <>
-            <div className="container mt-4">
-                <div className="row">
-                    {imageUrls.map((url, index) => (
-                        <div key={index} className="col-sm-2 col-md-4 col-lg-2 mb-4">
-                            <div  onClick={() => handleImageClick(index)}>
-                                <img src={url} alt={`Image ${index}`} className="img-fluid" />
-                                {/* <div className="caption">Image {index + 1}</div> */}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+   <div className="gallery-grid2">
+                {/* Render sorted images */}
+                {verticalImages.map((url, index) => (
+                    <div key={`vertical-${index}`} className="film-vertical" onClick={() => handleImageClick(index)}>
+                        <img src={url} alt={`Vertical Image ${index}`} />
+                    </div>
+                ))}
+                {horizontalImages.map((url, index) => (
+                    <div key={`horizontal-${index}`} className="film-horizontal" onClick={() => handleImageClick(index)}>
+                        <img src={url} alt={`Horizontal Image ${index}`} />
+                    </div>
+                ))}
             </div>
 
             {/* Bootstrap Modal for enlarged image */}

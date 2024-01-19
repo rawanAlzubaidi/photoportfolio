@@ -13,6 +13,8 @@ const Film = () => {
 
     const [verticalImages, setVerticalImages] = useState([]);
     const [horizontalImages, setHorizontalImages] = useState([]);
+    const [combinedImages, setCombinedImages] = useState([]);
+
 
     useEffect(() => {
         const fetchImages = async () => {
@@ -26,80 +28,63 @@ const Film = () => {
                 console.error("Error fetching images: ", error);
             }
         };
-
-        fetchImages();
-
-        
+        fetchImages();  
     }, []);
 
     useEffect(() => {
-        // This effect runs when imageUrls are set
         if (imageUrls.length > 0) {
             const tempVertical = [];
             const tempHorizontal = [];
             let loadedImages = 0; // Counter for loaded images
-
+    
             imageUrls.forEach(url => {
                 const img = new Image();
                 img.onload = () => {
                     loadedImages++;
-                    if (img.naturalHeight > img.naturalWidth * 1.1) {
-                        tempVertical.push(url);
+                    const orientation = img.naturalHeight > img.naturalWidth * 1.1 ? 'vertical' : 'horizontal';
+                    const imageObject = { url, orientation, originalIndex: imageUrls.indexOf(url) };
+    
+                    if (orientation === 'vertical') {
+                        tempVertical.push(imageObject);
                     } else {
-                        tempHorizontal.push(url);
+                        tempHorizontal.push(imageObject);
                     }
+    
                     if (loadedImages === imageUrls.length) {
                         setVerticalImages(tempVertical);
                         setHorizontalImages(tempHorizontal);
+                        setCombinedImages([...tempVertical, ...tempHorizontal]);
                     }
                 };
                 img.onerror = () => {
-                    loadedImages++; // Increment counter even if image fails to load
-                    // You might decide to handle the error differently here
+                    loadedImages++;
+                    // Handle error
                 };
                 img.src = url;
             });
         }
-    }, [imageUrls]); // Depends on imageUrls
+    }, [imageUrls]);
+    
 
     const handleImageClick = (index) => {
         setCurrentImageIndex(index);
         setShowModal(true);
     };
-
+    
+    
     const handleCloseModal = () => setShowModal(false);
 
-    const nextImage = () => {
-        setCurrentImageIndex((prevIndex) => 
-            prevIndex === imageUrls.length - 1 ? 0 : prevIndex + 1
-        );
-    };
-
-    const previousImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === 0 ? imageUrls.length - 1 : prevIndex - 1
-        );
-    };
-
     const handlers = useSwipeable({
-        onSwipedLeft: () => nextImage(),
-        onSwipedRight: () => previousImage(),
         preventDefaultTouchmoveEvent: true,
         trackMouse: true
     });
 
     return (
         <>
-   <div className="gallery-grid2">
-                {/* Render sorted images */}
-                {verticalImages.map((url, index) => (
-                    <div key={`vertical-${index}`} className="film-vertical" onClick={() => handleImageClick(index)}>
-                        <img src={url} alt={`Vertical Image ${index}`} />
-                    </div>
-                ))}
-                {horizontalImages.map((url, index) => (
-                    <div key={`horizontal-${index}`} className="film-horizontal" onClick={() => handleImageClick(index)}>
-                        <img src={url} alt={`Horizontal Image ${index}`} />
+            <div className="gallery-grid2">
+                {combinedImages.map((imageData, index) => (
+                    <div key={index} className={`film-${imageData.orientation}`} onClick={() => handleImageClick(index)}>
+                        <img src={imageData.url} alt={`Image ${index}`} />
                     </div>
                 ))}
             </div>
@@ -107,16 +92,16 @@ const Film = () => {
             {/* Bootstrap Modal for enlarged image */}
             <Modal show={showModal} onHide={handleCloseModal} centered {...handlers}>
                 <Modal.Header closeButton>
-                {/* <Modal.Title>Enlarged Image</Modal.Title> */}
                 </Modal.Header>
-            <Modal.Body>
-            {imageUrls.length > 0 && (
-            <img
-            src={imageUrls[currentImageIndex]}
-            alt={`Image ${currentImageIndex}`}
-            className="img-fluid"
-        /> )}
-            </Modal.Body>
+                <Modal.Body>
+                    {combinedImages.length > 0 && (
+                        <img
+                            src={combinedImages[currentImageIndex].url}
+                            alt={`Image ${combinedImages[currentImageIndex].originalIndex}`}
+                            className="img-fluid"
+                        />
+                    )}
+                </Modal.Body>
             </Modal>
             </>
             );

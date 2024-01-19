@@ -7,7 +7,8 @@ import logo from './logo.png'; // Make sure the path to your logo is correct
 
 const MyNavbar = () => {
   return (
-    <Navbar expand="lg" sticky="top" className="text-center">
+    <Navbar expand="lg" className="text-center">
+            {/* <Navbar expand="lg" sticky="top" className="text-center"></Navbar> */}
       <Navbar.Brand as={Link} to="/" className="w-100"> {/* Logo navigates to the root */}
         <img src={logo} height="80" className="mx-auto d-block" alt="Logo" />
       </Navbar.Brand>

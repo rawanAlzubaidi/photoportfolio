@@ -58,7 +58,6 @@ const Film = () => {
                 };
                 img.onerror = () => {
                     loadedImages++;
-                    // Handle error
                 };
                 img.src = url;
             });
@@ -78,16 +77,76 @@ const Film = () => {
         preventDefaultTouchmoveEvent: true,
         trackMouse: true
     });
+    const getRandomInt = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
+
+      const [isViewerOpen, setIsViewerOpen] = useState(false);
+      const [selectedStackImages, setSelectedStackImages] = useState([]);
+      
+      const handleStackClick = (images) => {
+        console.log('Opening gallery with images:', images);
+        setSelectedStackImages(images);
+        setIsGalleryOpen(true); // This should trigger the gallery to open
+      };
+      
+      
+      const handleCloseViewer = () => {
+        setIsViewerOpen(false);
+      };
+      const GalleryView = ({ images, onClose }) => {
+        return (
+          <div className="gallery-view">
+            <button onClick={onClose}>Close Gallery</button>
+            <div className="gallery-grid">
+              {images.map((image, index) => (
+                <img key={index} src={image} alt={`Gallery image ${index}`} />
+              ))}
+            </div>
+          </div>
+        );
+      };
+      const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
+    const handleCloseGallery = () => {
+    setIsGalleryOpen(false); // Close the gallery view
+    };
+
+      
 
     return (
         <>
             <div className="gallery-grid2">
-                {combinedImages.map((imageData, index) => (
-                    <div key={index} className={`film-${imageData.orientation}`} onClick={() => handleImageClick(index)}>
-                        <img src={imageData.url} alt={`Image ${index}`} />
-                    </div>
-                ))}
+                {combinedImages.map((imageData, index) => {
+                    // Random position and rotation for each image
+                    const x = getRandomInt(-10, 10); // Random X offset
+                    const y = getRandomInt(-10, 10); // Random Y offset
+                    const rot = getRandomInt(-15, 15); // Random rotation
+
+                    return (
+                        <div 
+                            key={index} 
+                            className="stack" 
+                            onClick={() => {
+                                console.log('Stack clicked, opening gallery.');
+                                handleStackClick(combinedImages.map(image => image.url));
+                            }}
+                            style={{ 
+                                transform: `translate(${x}px, ${y}px) rotate(${rot}deg)`,
+                                zIndex: combinedImages.length - index 
+                            }}
+                            >
+                            <img src={imageData.url} alt={`Image ${index}`} />
+                            </div>
+                    );
+                })}
+                {isGalleryOpen && (
+                <GalleryView images={imageUrls} onClose={handleCloseGallery} />
+                )}
             </div>
+
 
             {/* Bootstrap Modal for enlarged image */}
             <Modal show={showModal} onHide={handleCloseModal} centered {...handlers}>

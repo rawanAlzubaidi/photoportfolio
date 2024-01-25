@@ -59,11 +59,10 @@ const Doors = () => {
             <div className="container mt-4">
                 <div className="row">
                     {imageUrls.map((url, index) => (
-                        // Update the class here to use col-4 for mobile and keep col-lg-2 for large screens
                         <div key={index} className="col-4 col-sm-4 col-md-4 col-lg-2 mb-4">
-                            <div className="polaroid" onClick={() => handleImageClick(index)}>
+                            <div onClick={() => handleImageClick(index)}>
                                 <img src={url} alt={`Image ${index}`} className="img-fluid" />
-                                {/* <div className="caption">Image {index + 1}</div> */}
+                               
                             </div>
                         </div>
                     ))}
@@ -73,7 +72,6 @@ const Doors = () => {
             {/* Bootstrap Modal for enlarged image */}
             <Modal show={showModal} onHide={handleCloseModal} centered {...handlers}>
                 <Modal.Header closeButton>
-                {/* <Modal.Title>Enlarged Image</Modal.Title> */}
                 </Modal.Header>
             <Modal.Body>
             {imageUrls.length > 0 && (

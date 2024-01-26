@@ -51,7 +51,7 @@ body {
 /* Mobile styles */
 @media (max-width: 768px) {
   .polaroid {
-    width: 130px; /* Example size for mobile */
+    width: 1px; /* Example size for mobile */
     /* margin: 15px; Reduced margin for smaller screens */
    padding: 5px 5px 25px 5px;
   
@@ -126,7 +126,7 @@ body {
 }
 .film-container{
   margin: auto;
-  padding: 140px;
+  padding-top: 140px;
 }
 
 .polaroid {
@@ -243,6 +243,35 @@ body {
 
   .film-vertical img, .film-horizontal img {
     max-height: 120px; /* Adjust as needed for your design */
+  }
+  .polaroid {
+    width: 110px;
+    background: white;
+    box-shadow: 0 0 10px rgba(193, 193, 193, 0.5);
+    padding: 10px 10px 20px 10px;
+    text-align: center;
+  }
+  .polaroid:hover {
+    transform: scale(1.1); /* Scales the image to 110% of its original size on hover */
+    transition: transform 0.2s ease-in-out; /* Smooth transition for the scaling effect */
+  }
+  
+  .polaroid img {
+    width: 100px; /* Makes image fill the frame */
+    display: block; /* Removes bottom space under image*/
+  }
+  .film{
+    width: 100px; /* Makes image fill the frame */
+    display: block; /* Removes bottom space under image*/
+  }
+  .gallery-grid2 {
+    height: 100px;
+    width: 100px;
+    padding-top: 30px;
+    margin:auto; 
+  }
+  .stack{
+    width: 150px;
   }
 }
 

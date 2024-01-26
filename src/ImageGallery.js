@@ -34,21 +34,7 @@ const ImageGallery = () => {
 
     const handleCloseModal = () => setShowModal(false);
 
-    const nextImage = () => {
-        setCurrentImageIndex((prevIndex) => 
-            prevIndex === imageUrls.length - 1 ? 0 : prevIndex + 1
-        );
-    };
-
-    const previousImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === 0 ? imageUrls.length - 1 : prevIndex - 1
-        );
-    };
-
     const handlers = useSwipeable({
-        onSwipedLeft: () => nextImage(),
-        onSwipedRight: () => previousImage(),
         preventDefaultTouchmoveEvent: true,
         trackMouse: true
     });

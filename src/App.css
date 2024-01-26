@@ -31,33 +31,6 @@ body {
   transition: opacity 250ms ease-in;
 }
 
-.gallery-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px; /* Adjust the spacing between Polaroids */
-  justify-content: center; /* This centers the flex items (Polaroids) in the container */
-  padding: 20px;
-}
-
-.polaroid {
-  width: 200px;
-  background: white;
-  box-shadow: 0 0 10px rgba(193, 193, 193, 0.5);
-  padding: 10px 10px 35px 10px;
-  text-align: center;
-}
-.polaroid:hover {
-  transform: scale(1.1); /* Scales the image to 110% of its original size on hover */
-  transition: transform 0.2s ease-in-out; /* Smooth transition for the scaling effect */
-}
-
-
-.polaroid img {
-  width: 100%; /* Makes image fill the frame */
-  display: block; /* Removes bottom space under image*/
-}
-
-
 .navbar-brand {
   padding-top: .5rem; /* Adjust the padding to control the space above the logo */
 }
@@ -119,11 +92,14 @@ body {
   position: relative;
   height: 200px; /* Should be tall enough to accommodate the stacked images */
   width: 300px; /* Set to the desired container width */
+  padding-top:30px;
+  margin:auto;
 }
 
 .stack {
   position: absolute;
   transition: transform 0.3s ease;
+  width: 200px;
 }
 
 .stack img {
@@ -131,6 +107,52 @@ body {
   display: block;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Optional: Adds a shadow for depth */
 }
+
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Adjust the spacing between Polaroids */
+  justify-content: center; /* This centers the flex items (Polaroids) in the container */
+  padding: 20px;
+}
+.film {
+  width: 200px;
+  padding: 10px 10px 35px 10px;
+  text-align: center;
+}
+.film img {
+  width: 100%; /* Makes image fill the frame */
+  display: block; /* Removes bottom space under image*/
+}
+.film-container{
+  margin: auto;
+  padding: 140px;
+}
+
+.polaroid {
+  width: 200px;
+  background: white;
+  box-shadow: 0 0 10px rgba(193, 193, 193, 0.5);
+  padding: 10px 10px 35px 10px;
+  text-align: center;
+}
+
+.polaroid:hover {
+  transform: scale(1.1); /* Scales the image to 110% of its original size on hover */
+  transition: transform 0.2s ease-in-out; /* Smooth transition for the scaling effect */
+}
+
+.polaroid img {
+  width: 100%; /* Makes image fill the frame */
+  display: block; /* Removes bottom space under image*/
+}
+.stack-container{
+  max-width: 1300px;
+}
+.film-container{
+  width: 100%;
+}
+
 .image-viewer {
   position: fixed;
   top: 0;

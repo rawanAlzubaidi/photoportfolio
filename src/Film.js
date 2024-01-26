@@ -8,13 +8,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Film = () => {
     const [imageUrls, setImageUrls] = useState([]);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [showModal, setShowModal] = useState(false);
 
     const [verticalImages, setVerticalImages] = useState([]);
     const [horizontalImages, setHorizontalImages] = useState([]);
     const [combinedImages, setCombinedImages] = useState([]);
-
+    const [showGalleryBelow, setShowGalleryBelow] = useState(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const fetchImages = async () => {
@@ -86,11 +86,16 @@ const Film = () => {
       const [isViewerOpen, setIsViewerOpen] = useState(false);
       const [selectedStackImages, setSelectedStackImages] = useState([]);
       
-      const handleStackClick = (images) => {
-        console.log('Opening gallery with images:', images);
-        setSelectedStackImages(images);
-        setIsGalleryOpen(true); // This should trigger the gallery to open
+      const handleStackClick = (index) => {
+        if (showGalleryBelow === index) {
+          // If the same index is clicked, hide the gallery
+          setShowGalleryBelow(null);
+        } else {
+          // If a different index is clicked, show the new gallery
+          setShowGalleryBelow(index);
+        }
       };
+      
       
       
       const handleCloseViewer = () => {
@@ -98,72 +103,70 @@ const Film = () => {
       };
       const GalleryView = ({ images, onClose }) => {
         return (
-          <div className="gallery-view">
-            <button onClick={onClose}>Close Gallery</button>
-            <div className="gallery-grid">
-              {images.map((image, index) => (
-                <img key={index} src={image} alt={`Gallery image ${index}`} />
-              ))}
-            </div>
-          </div>
-        );
-      };
-      const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-
-    const handleCloseGallery = () => {
-    setIsGalleryOpen(false); // Close the gallery view
-    };
-
-      
-
-    return (
-        <>
-            <div className="gallery-grid2">
-                {combinedImages.map((imageData, index) => {
-                    // Random position and rotation for each image
-                    const x = getRandomInt(-10, 10); // Random X offset
-                    const y = getRandomInt(-10, 10); // Random Y offset
-                    const rot = getRandomInt(-15, 15); // Random rotation
-
-                    return (
-                        <div 
-                            key={index} 
-                            className="stack" 
-                            onClick={() => {
-                                console.log('Stack clicked, opening gallery.');
-                                handleStackClick(combinedImages.map(image => image.url));
-                            }}
-                            style={{ 
-                                transform: `translate(${x}px, ${y}px) rotate(${rot}deg)`,
-                                zIndex: combinedImages.length - index 
-                            }}
-                            >
-                            <img src={imageData.url} alt={`Image ${index}`} />
+            <>
+            <div className="film-container">
+                <div className="row">
+                    {imageUrls.map((url, index) => (
+                        // Update the class here to use col-4 for mobile and keep col-lg-2 for large screens
+                        <div key={index} className="col-4 col-sm-4 col-md-4 col-lg-2 mb-4">
+                            <div className="film" onClick={() => handleImageClick(index)}>
+                                <img src={url} alt={`Image ${index}`} className="img-fluid" />
+                                {/* <div className="caption">Image {index + 1}</div> */}
                             </div>
-                    );
-                })}
-                {isGalleryOpen && (
-                <GalleryView images={imageUrls} onClose={handleCloseGallery} />
-                )}
+                        </div>
+                    ))}
+                </div>
             </div>
-
-
             {/* Bootstrap Modal for enlarged image */}
             <Modal show={showModal} onHide={handleCloseModal} centered {...handlers}>
                 <Modal.Header closeButton>
+                {/* <Modal.Title>Enlarged Image</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body>
-                    {combinedImages.length > 0 && (
-                        <img
-                            src={combinedImages[currentImageIndex].url}
-                            alt={`Image ${combinedImages[currentImageIndex].originalIndex}`}
-                            className="img-fluid"
-                        />
-                    )}
-                </Modal.Body>
+            <Modal.Body>
+            {imageUrls.length > 0 && (
+            <img
+            src={imageUrls[currentImageIndex]}
+            alt={`Image ${currentImageIndex}`}
+            className="img-fluid"
+        /> )}
+            </Modal.Body>
             </Modal>
             </>
             );
+            };
+
+      
+    return (
+        <>
+          <div className="gallery-grid2">
+            {combinedImages.map((imageData, index) => {
+              // Random position and rotation for each image
+              const x = getRandomInt(-10, 10); // Random X offset
+              const y = getRandomInt(-10, 10); // Random Y offset
+              const rot = getRandomInt(-15, 15); // Random rotation
+      
+              return (
+                <div 
+                  key={index} 
+                  className="stack"
+                  style={{ 
+                    transform: `translate(${x}px, ${y}px) rotate(${rot}deg)`,
+                    zIndex: combinedImages.length - index 
+                  }}
+                  onClick={() => handleStackClick(index)}
+                >
+                  <img src={imageData.url} alt={`Image ${index}`} />
+                </div>
+              );
+            })}
+            
+          </div>
+          {showGalleryBelow !== null && (
+              <GalleryView images={imageUrls} onClose={() => setShowGalleryBelow(null)} />
+            )}
+        </>
+      );
+      
             };
 
 export default Film;

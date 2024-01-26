@@ -108,7 +108,7 @@ const Film = () => {
                 <div className="row">
                     {imageUrls.map((url, index) => (
                         // Update the class here to use col-4 for mobile and keep col-lg-2 for large screens
-                        <div key={index} className="col-4 col-sm-4 col-md-4 col-lg-2 mb-4">
+                        <div key={index} className="col-4 col-sm-4 col-md-4 col-lg-2">
                             <div className="film" onClick={() => handleImageClick(index)}>
                                 <img src={url} alt={`Image ${index}`} className="img-fluid" />
                                 {/* <div className="caption">Image {index + 1}</div> */}

@@ -117,7 +117,7 @@ body {
 }
 .film {
   width: 200px;
-  padding: 10px 10px 35px 10px;
+
   text-align: center;
 }
 .film img {
@@ -261,7 +261,7 @@ body {
     display: block; /* Removes bottom space under image*/
   }
   .film{
-    width: 100px; /* Makes image fill the frame */
+    width: 110px; /* Makes image fill the frame */
     display: block; /* Removes bottom space under image*/
   }
   .gallery-grid2 {

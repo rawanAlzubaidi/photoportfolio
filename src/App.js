@@ -7,6 +7,7 @@ import ImageGallery from './ImageGallery';
 import Doors from './Doors'; 
 import Film from './Film'; 
 import FlipCard from './FlipCard';
+import AboutComponent from './About';
 import './App.css'; // Your CSS file for styles
 
 // BackgroundController Component inside App.js
@@ -31,10 +32,8 @@ const BackgroundController = () => {
 };
 
 // Wrap your components with the withLoading HOC outside of the Route definitions
-const LoadedImageGallery = withLoading(ImageGallery);
-const LoadedDoors = withLoading(Doors);
-const LoadedFilm = withLoading(Film);
-const LoadedFlipCard = withLoading(FlipCard);
+const LoadedImageGallery = withLoading(ImageGallery,'digital');
+const LoadedFilm = withLoading(Film,'film');
 
 const App = () => {
   return (
@@ -43,10 +42,10 @@ const App = () => {
       <BackgroundController />
       <Routes>
         <Route path="/" element={<LoadedImageGallery />} />
-        <Route path="/doors" element={<LoadedDoors />} />
+        <Route path="/doors" element={<Doors />} />
         <Route path="/Digital" element={<LoadedImageGallery />} />
         <Route path="/Film" element={<LoadedFilm />} />
-        <Route path="/aboutme" element={<LoadedFlipCard />} />
+        <Route path="/aboutme" element={<AboutComponent />} />
       </Routes>
     </Router>
   );

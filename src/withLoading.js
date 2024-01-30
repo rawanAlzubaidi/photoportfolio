@@ -1,19 +1,17 @@
-// withLoading.js
 import React, { useState, useEffect } from 'react';
-import LoadingScreen from './LoadingScreen';
+import LoadingScreen from './LoadingScreenFilm';
 
-const withLoading = (Component) => {
+const withLoading = (Component, loadingType = 'film') => {
   return (props) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-      // Simulate a loading time or replace with actual data fetching logic
-      const timer = setTimeout(() => setLoading(false), 1000); // Delay for loading simulation
-      return () => clearTimeout(timer); // Clean up the timer on unmount
+      const timer = setTimeout(() => setLoading(false), 2000);
+      return () => clearTimeout(timer);
     }, []);
 
     if (loading) {
-      return <LoadingScreen />;
+      return <LoadingScreen type={loadingType} />;
     }
 
     return <Component {...props} />;

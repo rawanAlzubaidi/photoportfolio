@@ -1,4 +1,5 @@
 // App.js
+import { Analytics } from '@vercel/analytics/react';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import withLoading from './withLoading';
@@ -8,7 +9,7 @@ import Doors from './Doors';
 import Film from './Film'; 
 import FlipCard from './FlipCard';
 import AboutComponent from './About';
-import './App.css'; // Your CSS file for styles
+import './App.css'; 
 
 // BackgroundController Component inside App.js
 const BackgroundController = () => {
@@ -40,6 +41,7 @@ const App = () => {
     <Router>
       <MyNavbar />
       <BackgroundController />
+      <Analytics />
       <Routes>
         <Route path="/" element={<LoadedImageGallery />} />
         <Route path="/doors" element={<Doors />} />

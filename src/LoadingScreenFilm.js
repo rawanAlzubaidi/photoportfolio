@@ -1,6 +1,7 @@
 import React from 'react';
 import filmGif from './film.gif';
-import cameraGif from './camera.gif'; // Import other GIFs here
+import cameraGif from './camera.gif'; 
+import doorGif from './door.gif'; 
 
 const LoadingScreen = ({ type }) => {
   let gif;
@@ -8,13 +9,18 @@ const LoadingScreen = ({ type }) => {
     case 'film':
       gif = filmGif;
       break;
-    case 'digital': // You can add more cases for different types
+    case 'digital': 
       gif = cameraGif;
+      break;
+    case 'door': 
+      gif = doorGif;
+      
       break;
   }
   return (
     <div className="loading-screen">
-      <img src={gif} alt="Loading..." />
+      <img src={gif} alt="Loading..."  style={type === 'door' ? { width: '400px', height: 'auto' } : {}} />
+
     </div>
   );
 };

@@ -35,6 +35,7 @@ const BackgroundController = () => {
 // Wrap your components with the withLoading HOC outside of the Route definitions
 const LoadedImageGallery = withLoading(ImageGallery,'digital');
 const LoadedFilm = withLoading(Film,'film');
+const LoadedDoor = withLoading(Doors,'door');
 
 const App = () => {
   return (
@@ -44,7 +45,7 @@ const App = () => {
       <Analytics />
       <Routes>
         <Route path="/" element={<LoadedImageGallery />} />
-        <Route path="/doors" element={<Doors />} />
+        <Route path="/doors" element={<LoadedDoor />} />
         <Route path="/Digital" element={<LoadedImageGallery />} />
         <Route path="/Film" element={<LoadedFilm />} />
         <Route path="/aboutme" element={<AboutComponent />} />

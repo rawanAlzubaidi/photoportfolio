@@ -3,8 +3,10 @@ import { useSwipeable } from 'react-swipeable';
 import { storage } from './firebaseConfig';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import Modal from 'react-bootstrap/Modal';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-lazy-load-image-component/src/effects/blur.css'; // Import the CSS for lazy-load effect
 
 const Doors = () => {
     const [imageUrls, setImageUrls] = useState([]);
@@ -16,7 +18,6 @@ const Doors = () => {
             try {
                 const imagesRef = ref(storage, 'doors/');
                 const result = await listAll(imagesRef);
-                console.log('Items in doors/:', result.items); // Debugging line
                 const urlPromises = result.items.map(imageRef => getDownloadURL(imageRef));
                 const urls = await Promise.all(urlPromises);
                 setImageUrls(urls);
@@ -61,8 +62,12 @@ const Doors = () => {
                     {imageUrls.map((url, index) => (
                         <div key={index} className="col-4 col-sm-4 col-md-4 col-lg-2 mb-4">
                             <div onClick={() => handleImageClick(index)}>
-                                <img src={url} alt={`Image ${index}`} className="img-fluid" />
-                               
+                                <LazyLoadImage
+                                    src={url}
+                                    alt={`Image ${index}`}
+                                    effect="blur"
+                                    className="img-fluid"
+                                />
                             </div>
                         </div>
                     ))}
@@ -71,20 +76,19 @@ const Doors = () => {
 
             {/* Bootstrap Modal for enlarged image */}
             <Modal show={showModal} onHide={handleCloseModal} centered {...handlers}>
-                <Modal.Header closeButton>
-                </Modal.Header>
-            <Modal.Body>
-            {imageUrls.length > 0 && (
-            <img
-            src={imageUrls[currentImageIndex]}
-            alt={`Image ${currentImageIndex}`}
-            className="img-fluid"
-        /> )}
-            </Modal.Body>
+                <Modal.Header closeButton></Modal.Header>
+                <Modal.Body>
+                    {imageUrls.length > 0 && (
+                        <img
+                            src={imageUrls[currentImageIndex]}
+                            alt={`Image ${currentImageIndex}`}
+                            className="img-fluid"
+                        />
+                    )}
+                </Modal.Body>
             </Modal>
-            </>
-            );
-            };
+        </>
+    );
+};
 
 export default Doors;
-                   

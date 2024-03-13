@@ -19,7 +19,7 @@ const LoadingScreen = ({ type }) => {
   }
   return (
     <div className="loading-screen">
-      <img src={gif} alt="Loading..."  style={type === 'door' ? { width: '400px', height: 'auto' } : {}} />
+      <img src={gif} alt="Loading..."  style={type === 'door' ? { padding: '30px',width: '250px', height: 'auto' } : {}} />
 
     </div>
   );

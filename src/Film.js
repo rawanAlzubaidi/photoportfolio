@@ -9,8 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Film = () => {
     const [imageUrls, setImageUrls] = useState([]);
 
-    const [verticalImages, setVerticalImages] = useState([]);
-    const [horizontalImages, setHorizontalImages] = useState([]);
     const [combinedImages, setCombinedImages] = useState([]);
     const [showGalleryBelow, setShowGalleryBelow] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -51,8 +49,7 @@ const Film = () => {
                     }
     
                     if (loadedImages === imageUrls.length) {
-                        setVerticalImages(tempVertical);
-                        setHorizontalImages(tempHorizontal);
+
                         setCombinedImages([...tempVertical, ...tempHorizontal]);
                     }
                 };
@@ -95,7 +92,26 @@ const Film = () => {
           setShowGalleryBelow(index);
         }
       };
-      
+      // Swipe handlers
+    const onSwipedLeft = () => {
+      if (currentImageIndex < imageUrls.length - 1) {
+          setCurrentImageIndex(currentImageIndex + 1);
+      }
+  };
+
+  const onSwipedRight = () => {
+      if (currentImageIndex > 0) {
+          setCurrentImageIndex(currentImageIndex - 1);
+      }
+  };
+
+  const swipeHandlers = useSwipeable({
+      onSwipedLeft: () => onSwipedLeft(),
+      onSwipedRight: () => onSwipedRight(),
+      preventDefaultTouchmoveEvent: true,
+      trackMouse: true,
+  });
+
       
       
       const handleCloseViewer = () => {
@@ -118,18 +134,18 @@ const Film = () => {
                 </div>
             </div>
             {/* Bootstrap Modal for enlarged image */}
-            <Modal show={showModal} onHide={handleCloseModal} centered {...handlers}>
-                <Modal.Header closeButton>
-                {/* <Modal.Title>Enlarged Image</Modal.Title> */}
-                </Modal.Header>
-            <Modal.Body>
-            {imageUrls.length > 0 && (
-            <img
-            src={imageUrls[currentImageIndex]}
-            alt={`Image ${currentImageIndex}`}
-            className="img-fluid"
-        /> )}
-            </Modal.Body>
+ {/* Bootstrap Modal for enlarged image */}
+ <Modal show={showModal} onHide={handleCloseModal} centered {...swipeHandlers}>
+                <Modal.Header closeButton></Modal.Header>
+                <Modal.Body>
+                    {imageUrls.length > 0 && (
+                        <img
+                            src={imageUrls[currentImageIndex]}
+                            alt={`Image ${currentImageIndex}`}
+                            className="img-fluid"
+                        />)
+                    }
+                </Modal.Body>
             </Modal>
             </>
             );

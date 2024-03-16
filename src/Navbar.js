@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo.png'; // Make sure the path to your logo is correct
+import logo from './assets/logo.png'; // Make sure the path to your logo is correct
 
 const MyNavbar = () => {
   return (

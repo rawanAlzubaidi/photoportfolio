@@ -1,6 +1,6 @@
 import React from 'react';
 import FlipCard from './FlipCard'; // Import the FlipCard component
-import bike from './bikeback.jpg'; 
+import bike from './assets/bikeback.jpg'; 
 
 const AboutComponent = () => {
   return (

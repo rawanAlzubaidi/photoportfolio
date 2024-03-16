@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import rawanImage from './rawan.JPG'; 
+import rawanImage from './assets//rawan.JPG'; 
 
 const FlipCard = () => {
     const [isFlipped, setIsFlipped] = useState(false);

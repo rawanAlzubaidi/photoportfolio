@@ -1,7 +1,7 @@
 import React from 'react';
-import filmGif from './film.gif';
-import cameraGif from './camera.gif'; 
-import doorGif from './door.gif'; 
+import filmGif from './assets/film.gif';
+import cameraGif from './assets/camera.gif'; 
+import doorGif from './assets/door.gif'; 
 
 const LoadingScreen = ({ type }) => {
   let gif;
@@ -19,7 +19,7 @@ const LoadingScreen = ({ type }) => {
   }
   return (
     <div className="loading-screen">
-      <img src={gif} alt="Loading..."  style={type === 'door' ? { padding: '30px',width: '250px', height: 'auto' } : {}} />
+      <img src={gif} alt="Loading..."  style={type === 'door' ? {paddingTop:'250px', width: '300px', height: 'auto' } : {}} />
 
     </div>
   );

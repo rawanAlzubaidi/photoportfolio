@@ -6,14 +6,15 @@ import Modal from 'react-bootstrap/Modal';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-lazy-load-image-component/src/effects/blur.css'; // Import the CSS for lazy-load effect
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import Footer from './Footer';
 
 const Doors = () => {
     const [imageUrls, setImageUrls] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
+   useEffect(() => {
         const fetchImages = async () => {
             try {
                 const imagesRef = ref(storage, 'doors/');
@@ -73,8 +74,6 @@ const Doors = () => {
                     ))}
                 </div>
             </div>
-
-            {/* Bootstrap Modal for enlarged image */}
             <Modal show={showModal} onHide={handleCloseModal} centered {...handlers}>
                 <Modal.Header closeButton></Modal.Header>
                 <Modal.Body>
@@ -87,7 +86,9 @@ const Doors = () => {
                     )}
                 </Modal.Body>
             </Modal>
+            <Footer />
         </>
+
     );
 };
 

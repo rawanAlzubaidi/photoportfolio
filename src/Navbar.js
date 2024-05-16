@@ -2,11 +2,11 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './assets/logo.png'; // Make sure the path to your logo is correct
+import logo from './assets/logo.png'; 
 
 const MyNavbar = () => {
   return (
-    <Navbar expand="lg" bg="dark" variant="dark" className="rounded-navbar">
+    <Navbar expand="lg" bg="light" variant="light" className="rounded-navbar">
      <Navbar.Brand as={Link} to="/" className="align-items-center d-flex">
         <div className="logo-circle"> 
           <img src={logo} height="50" alt="Logo" />

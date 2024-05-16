@@ -5,6 +5,8 @@ import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import Modal from 'react-bootstrap/Modal';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ImageGallery = () => {
     const [imageUrls, setImageUrls] = useState([]);
@@ -18,7 +20,7 @@ const ImageGallery = () => {
                 const result = await listAll(imagesRef);
                 const urlPromises = result.items.map(imageRef => getDownloadURL(imageRef));
                 const urls = await Promise.all(urlPromises);
-                setImageUrls(urls.reverse()); // Reverse the order of URLs
+                setImageUrls(urls.reverse()); 
             } catch (error) {
                 console.error("Error fetching images: ", error);
             }
@@ -60,8 +62,13 @@ const ImageGallery = () => {
                 <div className="row">
                     {imageUrls.map((url, index) => (
                         <div key={index} className="col-4 col-sm-4 col-md-4 col-lg-2 mb-4">
-                            <div className="polaroid" onClick={() => handleImageClick(index)}>
-                                <img src={url} alt={`Image ${index}`} className="img-fluid" />
+                            <div onClick={() => handleImageClick(index)}>
+                                <LazyLoadImage
+                                    src={url} // Use src to provide the image
+                                    alt={`Image ${index}`}
+                                    effect="blur" // Optional: Adds a blur effect while loading
+                                    className="img-fluid"
+                                />
                             </div>
                         </div>
                     ))}

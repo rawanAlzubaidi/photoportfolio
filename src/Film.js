@@ -5,10 +5,10 @@ import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import Modal from 'react-bootstrap/Modal';
 import './App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import FilmFolders from './film/rollslide.js';
 
 const Film = () => {
     const [imageUrls, setImageUrls] = useState([]);
-
     const [combinedImages, setCombinedImages] = useState([]);
     const [showGalleryBelow, setShowGalleryBelow] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -70,10 +70,6 @@ const Film = () => {
     
     const handleCloseModal = () => setShowModal(false);
 
-    const handlers = useSwipeable({
-        preventDefaultTouchmoveEvent: true,
-        trackMouse: true
-    });
     const getRandomInt = (min, max) => {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -81,7 +77,6 @@ const Film = () => {
       };
 
       const [isViewerOpen, setIsViewerOpen] = useState(false);
-      const [selectedStackImages, setSelectedStackImages] = useState([]);
       
       const handleStackClick = (index) => {
         if (showGalleryBelow === index) {
@@ -92,22 +87,8 @@ const Film = () => {
           setShowGalleryBelow(index);
         }
       };
-      // Swipe handlers
-    const onSwipedLeft = () => {
-      if (currentImageIndex < imageUrls.length - 1) {
-          setCurrentImageIndex(currentImageIndex + 1);
-      }
-  };
-
-  const onSwipedRight = () => {
-      if (currentImageIndex > 0) {
-          setCurrentImageIndex(currentImageIndex - 1);
-      }
-  };
 
   const swipeHandlers = useSwipeable({
-      onSwipedLeft: () => onSwipedLeft(),
-      onSwipedRight: () => onSwipedRight(),
       preventDefaultTouchmoveEvent: true,
       trackMouse: true,
   });
@@ -123,19 +104,15 @@ const Film = () => {
             <div className="film-container">
                 <div className="row">
                     {imageUrls.map((url, index) => (
-                        // Update the class here to use col-4 for mobile and keep col-lg-2 for large screens
                         <div key={index} className="col-4 col-sm-4 col-md-4 col-lg-2">
                             <div className="film" onClick={() => handleImageClick(index)}>
                                 <img src={url} alt={`Image ${index}`} className="img-fluid" />
-                                {/* <div className="caption">Image {index + 1}</div> */}
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
-            {/* Bootstrap Modal for enlarged image */}
- {/* Bootstrap Modal for enlarged image */}
- <Modal show={showModal} onHide={handleCloseModal} centered {...swipeHandlers}>
+            <Modal show={showModal} onHide={handleCloseModal} centered {...swipeHandlers}>
                 <Modal.Header closeButton></Modal.Header>
                 <Modal.Body>
                     {imageUrls.length > 0 && (
@@ -154,13 +131,12 @@ const Film = () => {
       
     return (
         <>
+        <FilmFolders />
           <div className="gallery-grid2">
             {combinedImages.map((imageData, index) => {
-              // Random position and rotation for each image
               const x = getRandomInt(-10, 10); // Random X offset
               const y = getRandomInt(-10, 10); // Random Y offset
               const rot = getRandomInt(-15, 15); // Random rotation
-      
               return (
                 <div 
                   key={index} 
@@ -182,7 +158,6 @@ const Film = () => {
             )}
         </>
       );
-      
             };
 
 export default Film;

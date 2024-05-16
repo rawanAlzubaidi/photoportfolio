@@ -13,7 +13,7 @@ body {
 }
 
 .navbar-text {
-  color: var(--navbar-text-color); 
+  color: black; 
   transition: color 0.3s; 
 }
 .App-link {
@@ -46,6 +46,7 @@ body {
   border-radius: 50px;
   /* margin-bottom: 50px; */
   display: flex; 
+  border-color: #000;
   justify-content: space-between; 
 }
 .logo-circle {
@@ -55,7 +56,6 @@ body {
   justify-content: center;
   align-items: center;
   padding: 5px;
-
   width: 70px; 
   height: 70px;
 }
@@ -82,12 +82,10 @@ body {
   display: flex;
 }
 
-/* Adjust the navbar toggler (hamburger icon) color if needed */
 .navbar-dark .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,..."); /* Insert the correct data URI for the toggler icon */
+  background-image: url("data:image/svg+xml;charset=utf8,...");
 }
 
-/* Additional responsive tweaks might be necessary */
 @media (max-width: 991px) {
   .navbar-collapse {
     margin-top: 10px;
@@ -116,14 +114,6 @@ body {
   .gallery-container {
     gap: 0px; /* Smaller gap for mobile devices */
   }
-}
-
-.gallery-grid2 {
-  position: relative;
-  height: 200px; 
-  width: 300px; 
-  padding-top:30px;
-  margin:auto;
 }
 
 .stack {
@@ -156,9 +146,12 @@ body {
 }
 .film-container{
   margin: auto;
-  padding-top: 140px;
+  
 }
-
+.film-container .row{
+  margin: auto;
+  padding-top: 160px;
+}
 .polaroid {
   width: 200px;
   background: white;
@@ -330,24 +323,29 @@ body {
 }
 
 .about-me-button {
-    top: 20px; 
-    left: 50%; 
-    /* transform: translateX(-50%) rotate(-10deg); */
-    background-color:#000; 
-    margin-bottom: 10px;
-    border-color: black;
-    padding: 5px 20px;
-    font-size: 1.5em; 
-    color: #fff;
-    cursor: pointer;
-    
-    border-radius: 0; 
-    box-shadow: none; 
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%); /* Center the button */
+  background-color: #000;
+  margin-bottom: 10px;
+  border: 2px solid transparent; /* Subtle border effect */
+  padding: 10px 25px; /* More padding for a better touch area */
+  font-size: 1.5em;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 25px; /* Rounded borders for a smoother look */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  text-align: center; /* Ensure text is centered */
 }
 
 .about-me-button:hover {
-  background-color: #000; 
+  background-color: #000; /* Darker shade on hover for a subtle effect */
+  border-color: #fff; /* White border on hover for contrast */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Enhanced shadow on hover for depth */
+  color: #fff; /* Maintain white color text */
 }
+
 
 /* flipped card style About me section  */
 .flip-card {
@@ -380,7 +378,6 @@ body {
 }
 
 .flip-card-front {
-  background-color: #bbb;
   color: black;
 }
 
@@ -394,13 +391,29 @@ body {
 }
 
 .flip-card img {
-  width: 100%;
+  width: 90%;
   height: auto;
 }
 /* 
 .flip-card-front {
   position: relative;
 } */
+.icon-circle {
+  background-color: black; /* Set the background color to black */
+  border-radius: 50%; /* Make the background circular */
+  padding: 10px; /* Space between the icon and the circle edge */
+  display: inline-flex; /* Use flexbox to center the icon */
+  align-items: center; /* Center the icon vertically */
+  justify-content: center; /* Center the icon horizontally */
+  color: white; /* Set the icon color to white for contrast */
+}
+
+/* Adjust the size of the icon if necessary */
+.icon-circle svg {
+  width: 30px; /* Set a specific size for the icon */
+  height: 30px; /* Maintain aspect ratio */
+}
+
 
 
 .loading-spinner {
@@ -463,3 +476,125 @@ body {
 .about-section {
   text-align: center; 
 }
+.social-icons {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px; /* Space from the flip card */
+}
+
+.social-icons svg {
+  color: #fff; /* White color for icons */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: color 0.3s ease; /* Smooth color transition */
+  margin: 5px; /* Spacing between icons */
+}
+
+.social-icons svg:hover {
+  color: #ccc; /* Light grey on hover for visual feedback */
+}
+
+
+
+
+/* App.css */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.gallery-grid2 {
+  position: relative;
+}
+
+.gallery-grid2 {
+  height: 200px; 
+  width: 300px; 
+  padding-top:30px;
+}
+
+.stack {
+  position: absolute;
+  will-change: transform; 
+}
+
+.stack img {
+  display: block; 
+  width: 100%;
+  object-fit: cover; 
+  max-width: 200px; 
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1); 
+}
+
+/* App.css */
+
+.folder-stack {
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.gallery-grid2 {
+  position: relative;
+  height: 200px;
+}
+
+.stack-image {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: transform 0.2s ease-in-out;
+}
+
+.footer-container {
+  background-color: #f4f4f4;
+  color: #666;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.footer-section h5 {
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  text-align: left;
+}
+
+.footer-bottom {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+      flex-direction: column;
+  }
+
+  .footer-section {
+      margin-bottom: 20px;
+  }
+
+  .footer-section p {
+      text-align: center;
+  }
+}
+
+

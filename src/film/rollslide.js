@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { listAll, ref, getDownloadURL } from "firebase/storage";
-import { storage } from '/Users/rawanalzubaidi/Desktop/websites/photoportfolio/src/firebaseConfig.js';
+import { storage } from '../firebaseConfig.js';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSwipeable } from 'react-swipeable';

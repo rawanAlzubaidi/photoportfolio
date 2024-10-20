@@ -66,7 +66,7 @@ const ImageGallery = () => {
                                 <LazyLoadImage
                                     src={url} // Use src to provide the image
                                     alt={`Image ${index}`}
-                                    effect="blur" // Optional: Adds a blur effect while loading
+                                    effect="blur" // Adds a blur effect while loading
                                     className="img-fluid"
                                 />
                             </div>
@@ -75,15 +75,23 @@ const ImageGallery = () => {
                 </div>
             </div>
             {/* Bootstrap Modal for enlarged image */}
-            <Modal show={showModal} onHide={handleCloseModal} centered {...swipeHandlers}>
+            <Modal show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton />
-                <Modal.Body>
+                <Modal.Body {...swipeHandlers}>
                     {imageUrls.length > 0 && (
-                        <img
-                            src={imageUrls[currentImageIndex]}
-                            alt={`Image ${currentImageIndex}`}
-                            className="img-fluid"
-                        />
+                        <div className="position-relative">
+                            <img
+                                src={imageUrls[currentImageIndex]}
+                                alt={`Image ${currentImageIndex}`}
+                                className="img-fluid"
+                            />
+                            <button onClick={goToPreviousImage} className="btn btn-light position-absolute top-50 start-0 translate-middle-y">
+                                &lt;
+                            </button>
+                            <button onClick={goToNextImage} className="btn btn-light position-absolute top-50 end-0 translate-middle-y">
+                                &gt;
+                            </button>
+                        </div>
                     )}
                 </Modal.Body>
             </Modal>

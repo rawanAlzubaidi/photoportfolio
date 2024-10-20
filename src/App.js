@@ -3,14 +3,11 @@ import { Analytics } from '@vercel/analytics/react';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import withLoading from './animationLoading/withLoading';
-import MyNavbar from './Navbar';
+import Navbar from './Navbar.js';
 import ImageGallery from './ImageGallery';
 import Doors from './Doors'; 
-import Film from './Film'; 
-import FlipCard from './aboutme/FlipCard';
 import FilmFolders from './film/rollslide.js';
 import AboutComponent from './aboutme/About';
-import Footer from './Footer';
 import './App.css'; 
 
 const BackgroundController = () => {
@@ -41,7 +38,7 @@ const LoadedDoor = withLoading(Doors,'door');
 const App = () => {
   return (
     <Router>
-      <MyNavbar />
+      <Navbar />
       <BackgroundController />
       <Analytics />
       <Routes>

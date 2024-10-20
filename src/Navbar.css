@@ -1,0 +1,76 @@
+@media (min-width: 992px) {
+  .sticky-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 200px;
+    flex-direction: column;
+  }
+
+  .sticky-navbar .navbar-collapse {
+    height: 100%;
+  }
+
+  .sticky-navbar .navbar-nav {
+    height: 100%;
+    /* justify-content: center; */
+  }
+
+  .sticky-navbar .nav-link {
+    padding: 15px 0;
+  }
+
+  .sticky-navbar .navbar-brand {
+    margin-bottom: 20px;
+  }
+
+  /* Adjust main content to accommodate side navbar */
+  body {
+    padding-left: 200px;
+  }
+}
+
+/* Styles for mobile view (unchanged) */
+@media (max-width: 991px) {
+  .rounded-navbar {
+    /* Your existing styles for mobile view */
+  }
+}
+
+/* Add these new styles for hover effects */
+.navbar-text {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar-text::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #007bff; /* You can change this to match your color scheme */
+  transition: all 0.3s ease;
+}
+
+.navbar-text:hover {
+  color: #007bff; /* You can change this to match your color scheme */
+}
+
+.navbar-text:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Special style for the "About" button */
+.navbar-text.btn.btn-outline-light.rounded-btn {
+  transition: all 0.3s ease;
+}
+
+.navbar-text.btn.btn-outline-light.rounded-btn:hover {
+  background-color: #007bff; /* You can change this to match your color scheme */
+  color: white;
+  border-color: #007bff; /* You can change this to match your color scheme */
+}

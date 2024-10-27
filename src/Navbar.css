@@ -74,3 +74,28 @@
   color: white;
   border-color: #007bff; /* You can change this to match your color scheme */
 }
+
+/* Style for the dropdown */
+.navbar-text.dropdown-toggle::after {
+  display: none;
+}
+
+#collection-dropdown {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-menu {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+  color: #212529;
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: #e9ecef;
+}

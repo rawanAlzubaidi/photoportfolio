@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './assets/logo.png'; 
@@ -18,7 +18,11 @@ const MyNavbar = () => {
         <Nav className="flex-column mx-auto">
           <Nav.Link as={Link} to="/digital" className="navbar-text">Digital</Nav.Link>
           <Nav.Link as={Link} to="/Film" className="navbar-text">Film</Nav.Link>
-          <Nav.Link as={Link} to="/doors" className="navbar-text">Doors</Nav.Link>
+          <NavDropdown title="Collection" id="collection-dropdown" className="navbar-text">
+            <NavDropdown.Item as={Link} to="/doors">Doors</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/Athkar">Athkar</NavDropdown.Item>
+            {/* Add more sub-items here if needed */}
+          </NavDropdown>
           <Nav.Link as={Link} to="/aboutme" className="navbar-text btn btn-outline-light rounded-btn">About</Nav.Link>
         </Nav>
       </Navbar.Collapse>

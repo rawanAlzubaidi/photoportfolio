@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import withLoading from './animationLoading/withLoading';
 import Navbar from './Navbar.js';
 import ImageGallery from './ImageGallery';
-import Doors from './Doors'; 
+import Doors from './routes/Doors';
+import Windows from './routes/Windows';
 import FilmFolders from './film/rollslide.js';
 import AboutComponent from './aboutme/About';
 import './App.css'; 
@@ -35,7 +36,7 @@ const LoadedImageGallery = withLoading(ImageGallery,'digital');
 const LoadedFilm = withLoading(FilmFolders,'film');
 const LoadedDoor = withLoading(Doors,'door');
 
-const App = () => {
+function App() {
   return (
     <Router>
       <Navbar />
@@ -47,9 +48,10 @@ const App = () => {
         <Route path="/Digital" element={<LoadedImageGallery />} />
         <Route path="/Film" element={<LoadedFilm />} />
         <Route path="/aboutme" element={<AboutComponent />} />
+        <Route path="/windows" element={<Windows />} />
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;

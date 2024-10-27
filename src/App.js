@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import withLoading from './animationLoading/withLoading';
 import Navbar from './Navbar.js';
 import ImageGallery from './ImageGallery';
-import Doors from './routes/Doors';
-import Athkar from './routes/Athkar.js';
+import Doors from './collections/Doors.js';
+import Athkar from './collections/Athkar.js';
 import FilmFolders from './film/rollslide.js';
 import AboutComponent from './aboutme/About';
 import './App.css'; 

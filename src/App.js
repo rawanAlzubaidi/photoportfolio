@@ -6,7 +6,7 @@ import withLoading from './animationLoading/withLoading';
 import Navbar from './Navbar.js';
 import ImageGallery from './ImageGallery';
 import Doors from './routes/Doors';
-import Windows from './routes/Windows';
+import Athkar from './routes/Athkar.js';
 import FilmFolders from './film/rollslide.js';
 import AboutComponent from './aboutme/About';
 import './App.css'; 
@@ -48,7 +48,7 @@ function App() {
         <Route path="/Digital" element={<LoadedImageGallery />} />
         <Route path="/Film" element={<LoadedFilm />} />
         <Route path="/aboutme" element={<AboutComponent />} />
-        <Route path="/windows" element={<Windows />} />
+        <Route path="/athkar" element={<Athkar />} />
       </Routes>
     </Router>
   );
